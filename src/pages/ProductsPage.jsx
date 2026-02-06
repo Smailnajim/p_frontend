@@ -156,42 +156,7 @@ function ProductsPage({ showToast, apiUrl }) {
                 </button>
             </div>
 
-            {/* Stats */}
-            <div className="stats-grid">
-                <div className="stat-card">
-                    <div className="stat-card__icon stat-card__icon--purple">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                        </svg>
-                    </div>
-                    <div>
-                        <div className="stat-card__value">{products.length}</div>
-                        <div className="stat-card__label">Total Items</div>
-                    </div>
-                </div>
-                <div className="stat-card">
-                    <div className="stat-card__icon stat-card__icon--blue">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                        </svg>
-                    </div>
-                    <div>
-                        <div className="stat-card__value">{productCount}</div>
-                        <div className="stat-card__label">Products</div>
-                    </div>
-                </div>
-                <div className="stat-card">
-                    <div className="stat-card__icon stat-card__icon--green">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <div className="stat-card__value">{serviceCount}</div>
-                        <div className="stat-card__label">Services</div>
-                    </div>
-                </div>
-            </div>
+
 
             {/* Products Table */}
             <div className="card">

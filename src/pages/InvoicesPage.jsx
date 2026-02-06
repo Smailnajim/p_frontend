@@ -167,71 +167,22 @@ function InvoicesPage({ showToast, apiUrl }) {
                     </div>
                     <div>
                         <h2>Invoices</h2>
-                        <p>Create and manage your invoices</p>
+                        <p>Manage your invoices and payments</p>
                     </div>
                 </div>
-            </div>
-
-            {/* Stats */}
-            <div className="stats-grid">
-                <div className="stat-card">
-                    <div className="stat-card__icon stat-card__icon--blue">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <div className="stat-card__value">{invoices.length}</div>
-                        <div className="stat-card__label">Total Invoices</div>
-                    </div>
-                </div>
-                <div className="stat-card">
-                    <div className="stat-card__icon stat-card__icon--orange">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <div className="stat-card__value">{pendingCount}</div>
-                        <div className="stat-card__label">Pending</div>
-                    </div>
-                </div>
-                <div className="stat-card">
-                    <div className="stat-card__icon stat-card__icon--green">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <div className="stat-card__value">${totalAmount.toFixed(2)}</div>
-                        <div className="stat-card__label">Total Amount</div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Tabs */}
-            <div className="tabs-container">
                 <button
-                    className={`tab-btn ${activeTab === 'list' ? 'tab-btn--active' : ''}`}
-                    onClick={() => setActiveTab('list')}
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                    </svg>
-                    All Invoices
-                </button>
-                <button
-                    className={`tab-btn ${activeTab === 'create' ? 'tab-btn--active' : ''}`}
+                    className="btn btn--primary"
                     onClick={() => setActiveTab('create')}
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                     </svg>
-                    Create Invoice
+                    Create New Invoice
                 </button>
             </div>
 
-            {activeTab === 'list' && (
+            {/* Content */}
+            {activeTab === 'list' ? (
                 <InvoiceList
                     invoices={invoices}
                     onDownloadPDF={handleDownloadPDF}
@@ -239,15 +190,26 @@ function InvoicesPage({ showToast, apiUrl }) {
                     onStatusChange={handleStatusChange}
                     loading={loading}
                 />
-            )}
-
-            {activeTab === 'create' && (
-                <InvoiceForm
-                    onSubmit={handleCreateInvoice}
-                    loading={loading}
-                    clients={clients}
-                    products={products}
-                />
+            ) : (
+                <div className="card animate-fadeIn">
+                    <div className="card__header">
+                        <h3 className="card__title">Create New Invoice</h3>
+                        <button
+                            className="btn btn--ghost btn--sm"
+                            onClick={() => setActiveTab('list')}
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                    <div className="card__body">
+                        <InvoiceForm
+                            onSubmit={handleCreateInvoice}
+                            loading={loading}
+                            clients={clients}
+                            products={products}
+                        />
+                    </div>
+                </div>
             )}
         </div>
     );
