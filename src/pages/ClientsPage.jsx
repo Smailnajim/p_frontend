@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
 
 function ClientsPage({ showToast, apiUrl }) {
+    const { token } = useAuth();
     const [clients, setClients] = useState([]);
     const [loading, setLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -16,7 +18,9 @@ function ClientsPage({ showToast, apiUrl }) {
     const fetchClients = async () => {
         try {
             setLoading(true);
-            const response = await fetch(`${apiUrl}/clients`);
+            const response = await fetch(`${apiUrl}/clients`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
             const data = await response.json();
             if (data.success) {
                 setClients(data.data);
@@ -29,8 +33,8 @@ function ClientsPage({ showToast, apiUrl }) {
     };
 
     useEffect(() => {
-        fetchClients();
-    }, []);
+        if (token) fetchClients();
+    }, [token]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -85,7 +89,10 @@ function ClientsPage({ showToast, apiUrl }) {
 
             const response = await fetch(url, {
                 method: editingClient ? 'PUT' : 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
                 body: JSON.stringify(formData),
             });
 
@@ -113,6 +120,7 @@ function ClientsPage({ showToast, apiUrl }) {
         try {
             const response = await fetch(`${apiUrl}/clients/${id}`, {
                 method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await response.json();
 

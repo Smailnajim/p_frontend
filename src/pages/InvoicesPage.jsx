@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
 import InvoiceForm from '../components/InvoiceForm';
 import InvoiceList from '../components/InvoiceList';
 
 function InvoicesPage({ showToast, apiUrl }) {
+    const { token } = useAuth();
     const [invoices, setInvoices] = useState([]);
     const [clients, setClients] = useState([]);
     const [products, setProducts] = useState([]);
@@ -12,7 +14,9 @@ function InvoicesPage({ showToast, apiUrl }) {
     const fetchInvoices = async () => {
         try {
             setLoading(true);
-            const response = await fetch(`${apiUrl}/invoices`);
+            const response = await fetch(`${apiUrl}/invoices`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
             const data = await response.json();
             if (data.success) {
                 setInvoices(data.data);
@@ -26,7 +30,9 @@ function InvoicesPage({ showToast, apiUrl }) {
 
     const fetchClients = async () => {
         try {
-            const response = await fetch(`${apiUrl}/clients`);
+            const response = await fetch(`${apiUrl}/clients`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
             const data = await response.json();
             if (data.success) {
                 setClients(data.data);
@@ -38,7 +44,9 @@ function InvoicesPage({ showToast, apiUrl }) {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch(`${apiUrl}/products`);
+            const response = await fetch(`${apiUrl}/products`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
             const data = await response.json();
             if (data.success) {
                 setProducts(data.data);
@@ -49,10 +57,12 @@ function InvoicesPage({ showToast, apiUrl }) {
     };
 
     useEffect(() => {
-        fetchInvoices();
-        fetchClients();
-        fetchProducts();
-    }, []);
+        if (token) {
+            fetchInvoices();
+            fetchClients();
+            fetchProducts();
+        }
+    }, [token]);
 
     const handleCreateInvoice = async (invoiceData) => {
         try {
@@ -61,6 +71,7 @@ function InvoicesPage({ showToast, apiUrl }) {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(invoiceData),
             });
@@ -85,7 +96,9 @@ function InvoicesPage({ showToast, apiUrl }) {
 
     const handleDownloadPDF = async (id) => {
         try {
-            const response = await fetch(`${apiUrl}/invoices/${id}/pdf`);
+            const response = await fetch(`${apiUrl}/invoices/${id}/pdf`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
 
             if (!response.ok) {
                 throw new Error('Failed to generate PDF');
@@ -114,6 +127,7 @@ function InvoicesPage({ showToast, apiUrl }) {
         try {
             const response = await fetch(`${apiUrl}/invoices/${id}`, {
                 method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await response.json();
 
@@ -134,6 +148,7 @@ function InvoicesPage({ showToast, apiUrl }) {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({ status: newStatus }),
             });

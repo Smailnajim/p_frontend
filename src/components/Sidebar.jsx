@@ -1,6 +1,8 @@
 import { NavLink } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Sidebar = () => {
+    const { user, logout } = useAuth();
     const navItems = [
         {
             path: '/dashboard', label: 'Dashboard', icon: (
@@ -27,6 +29,13 @@ const Sidebar = () => {
             path: '/products', label: 'Products', icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
+            )
+        },
+        {
+            path: '/users', label: 'Users', icon: (
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
             )
         },
@@ -58,11 +67,26 @@ const Sidebar = () => {
 
             <div className="sidebar__footer">
                 <div className="user-profile">
-                    <div className="user-avatar">AD</div>
-                    <div className="user-info">
-                        <div className="user-name">Admin User</div>
-                        <div className="user-role">Administrator</div>
+                    <div className="user-avatar" style={{ background: 'var(--primary-100)', color: 'var(--primary-700)', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', fontWeight: '600' }}>
+                        {user?.name?.charAt(0).toUpperCase() || 'U'}
                     </div>
+                    <div className="user-info" style={{ flex: 1, minWidth: 0 }}>
+                        <div className="user-name" style={{ fontWeight: '500', fontSize: '0.875rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                            {user?.name || 'User'}
+                        </div>
+                        <div className="user-role" style={{ fontSize: '0.75rem', color: 'var(--gray-500)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                            {user?.email}
+                        </div>
+                    </div>
+                    <button
+                        onClick={logout}
+                        style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--gray-400)', padding: '4px' }}
+                        title="Logout"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                    </button>
                 </div>
             </div>
         </aside>

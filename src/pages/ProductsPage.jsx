@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
 
 function ProductsPage({ showToast, apiUrl }) {
+    const { token } = useAuth();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -16,7 +18,9 @@ function ProductsPage({ showToast, apiUrl }) {
     const fetchProducts = async () => {
         try {
             setLoading(true);
-            const response = await fetch(`${apiUrl}/products`);
+            const response = await fetch(`${apiUrl}/products`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
             const data = await response.json();
             if (data.success) {
                 setProducts(data.data);
@@ -29,8 +33,8 @@ function ProductsPage({ showToast, apiUrl }) {
     };
 
     useEffect(() => {
-        fetchProducts();
-    }, []);
+        if (token) fetchProducts();
+    }, [token]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -85,7 +89,10 @@ function ProductsPage({ showToast, apiUrl }) {
 
             const response = await fetch(url, {
                 method: editingProduct ? 'PUT' : 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
                 body: JSON.stringify({
                     ...formData,
                     price: parseFloat(formData.price),
@@ -116,6 +123,7 @@ function ProductsPage({ showToast, apiUrl }) {
         try {
             const response = await fetch(`${apiUrl}/products/${id}`, {
                 method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await response.json();
 

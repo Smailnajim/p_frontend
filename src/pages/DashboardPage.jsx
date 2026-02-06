@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
 
 const DashboardPage = ({ apiUrl }) => {
+    const { token } = useAuth();
     const [stats, setStats] = useState({
         totalInvoices: 0,
         totalRevenue: 0,
@@ -12,10 +14,11 @@ const DashboardPage = ({ apiUrl }) => {
         // Simulate fetching stats or fetch real aggregated data
         // For now, we'll fetch invoices to calculate
         const fetchData = async () => {
+            if (!token) return;
             try {
                 const [invoicesRes, clientsRes] = await Promise.all([
-                    fetch(`${apiUrl}/invoices`),
-                    fetch(`${apiUrl}/clients`)
+                    fetch(`${apiUrl}/invoices`, { headers: { 'Authorization': `Bearer ${token}` } }),
+                    fetch(`${apiUrl}/clients`, { headers: { 'Authorization': `Bearer ${token}` } })
                 ]);
 
                 const invoicesData = await invoicesRes.json();
@@ -39,7 +42,7 @@ const DashboardPage = ({ apiUrl }) => {
         };
 
         fetchData();
-    }, [apiUrl]);
+    }, [apiUrl, token]);
 
     return (
         <div className="dashboard animate-fadeIn">
