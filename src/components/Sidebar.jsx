@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, onClose }) => {
     const { user, logout } = useAuth();
     const navItems = [
         {
@@ -42,7 +42,7 @@ const Sidebar = () => {
     ];
 
     return (
-        <aside className="sidebar">
+        <aside className={`sidebar ${isOpen ? 'sidebar--open' : ''}`}>
             <div className="sidebar__header">
                 <div className="sidebar__logo">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -58,6 +58,7 @@ const Sidebar = () => {
                         key={item.path}
                         to={item.path}
                         className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`}
+                        onClick={onClose}
                     >
                         {item.icon}
                         <span>{item.label}</span>
