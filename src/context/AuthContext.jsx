@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
@@ -12,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
 
     // Configure API URL based on environment or default to localhost:3000
-    const API_URL = 'https://express-js-on-vercel-theta-ashen.vercel.app/api';
+    const API_URL = 'https://p-backend-v8ct.onrender.com/api';
 
     useEffect(() => {
         const loadUser = async () => {
