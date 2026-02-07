@@ -12,7 +12,7 @@ import RegisterPage from './pages/RegisterPage';
 import Toast from './components/Toast';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'https://express-js-on-vercel-theta-ashen.vercel.app/api';
 
 const ProtectedRoute = () => {
   const { user, loading } = useAuth();
