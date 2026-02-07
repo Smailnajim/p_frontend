@@ -84,53 +84,55 @@ function UsersPage({ showToast, apiUrl }) {
                             <p className="empty-state__text">No users found.</p>
                         </div>
                     ) : (
-                        <table className="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {users.map((u) => (
-                                    <tr key={u._id}>
-                                        <td>
-                                            <strong>{u.name}</strong>
-                                            {u._id === user?.id && <span className="badge badge--success" style={{ marginLeft: '8px' }}>You</span>}
-                                        </td>
-                                        <td>{u.email}</td>
-                                        <td>
-                                            <span className={`badge ${u.status === 'allowed' ? 'badge--success' : 'badge--danger'}`}>
-                                                {u.status || 'blocked'}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            {u._id !== user?.id && (
-                                                <div className="data-table__actions">
-                                                    {u.status === 'blocked' ? (
-                                                        <button
-                                                            className="btn btn--primary btn--sm"
-                                                            onClick={() => handleUpdateStatus(u._id, 'allowed')}
-                                                        >
-                                                            Approve
-                                                        </button>
-                                                    ) : (
-                                                        <button
-                                                            className="btn btn--danger btn--sm"
-                                                            onClick={() => handleUpdateStatus(u._id, 'blocked')}
-                                                        >
-                                                            Block
-                                                        </button>
-                                                    )}
-                                                </div>
-                                            )}
-                                        </td>
+                        <div className="table-container">
+                            <table className="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {users.map((u) => (
+                                        <tr key={u._id}>
+                                            <td>
+                                                <strong>{u.name}</strong>
+                                                {u._id === user?.id && <span className="badge badge--success" style={{ marginLeft: '8px' }}>You</span>}
+                                            </td>
+                                            <td>{u.email}</td>
+                                            <td>
+                                                <span className={`badge ${u.status === 'allowed' ? 'badge--success' : 'badge--danger'}`}>
+                                                    {u.status || 'blocked'}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                {u._id !== user?.id && (
+                                                    <div className="data-table__actions">
+                                                        {u.status === 'blocked' ? (
+                                                            <button
+                                                                className="btn btn--primary btn--sm"
+                                                                onClick={() => handleUpdateStatus(u._id, 'allowed')}
+                                                            >
+                                                                Approve
+                                                            </button>
+                                                        ) : (
+                                                            <button
+                                                                className="btn btn--danger btn--sm"
+                                                                onClick={() => handleUpdateStatus(u._id, 'blocked')}
+                                                            >
+                                                                Block
+                                                            </button>
+                                                        )}
+                                                    </div>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
                     )}
                 </div>
             </div>
