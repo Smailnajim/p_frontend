@@ -59,7 +59,7 @@ const DashboardPage = ({ apiUrl }) => {
                         </svg>
                     </div>
                     <div>
-                        <div className="stat-card__value">${stats.totalRevenue.toFixed(2)}</div>
+                        <div className="stat-card__value">{stats.totalRevenue.toFixed(2)} DH</div>
                         <div className="stat-card__label">Total Revenue</div>
                     </div>
                 </div>

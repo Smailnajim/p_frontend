@@ -223,7 +223,7 @@ function InvoiceForm({ onSubmit, loading, clients = [], products = [] }) {
                             <th style={{ width: '35%' }}>Description</th>
                             {products.length > 0 && <th style={{ width: '20%' }}>Quick Add</th>}
                             <th style={{ width: '12%' }}>Qty</th>
-                            <th style={{ width: '15%' }}>Unit Price ($)</th>
+                            <th style={{ width: '15%' }}>Unit Price (DH)</th>
                             <th style={{ width: '12%' }}>Total</th>
                             <th style={{ width: '6%' }}></th>
                         </tr>
@@ -251,7 +251,7 @@ function InvoiceForm({ onSubmit, loading, clients = [], products = [] }) {
                                             <option value="">Select...</option>
                                             {products.map(product => (
                                                 <option key={product.id} value={product.id}>
-                                                    {product.name} (${product.price})
+                                                    {product.name} ({product.price} DH)
                                                 </option>
                                             ))}
                                         </select>
@@ -279,7 +279,7 @@ function InvoiceForm({ onSubmit, loading, clients = [], products = [] }) {
                                     />
                                 </td>
                                 <td className="total-cell">
-                                    ${(item.quantity * item.unitPrice).toFixed(2)}
+                                    {(item.quantity * item.unitPrice).toFixed(2)} DH
                                 </td>
                                 <td>
                                     {formData.items.length > 1 && (
@@ -316,7 +316,7 @@ function InvoiceForm({ onSubmit, loading, clients = [], products = [] }) {
                 <div className="invoice-summary">
                     <div className="summary-row">
                         <span className="summary-row__label">Subtotal:</span>
-                        <span className="summary-row__value">${calculateSubtotal().toFixed(2)}</span>
+                        <span className="summary-row__value">{calculateSubtotal().toFixed(2)} DH</span>
                     </div>
 
                     <div className="summary-row" style={{ alignItems: 'center' }}>
@@ -335,12 +335,12 @@ function InvoiceForm({ onSubmit, loading, clients = [], products = [] }) {
 
                     <div className="summary-row">
                         <span className="summary-row__label">Tax Amount:</span>
-                        <span className="summary-row__value">${calculateTax().toFixed(2)}</span>
+                        <span className="summary-row__value">{calculateTax().toFixed(2)} DH</span>
                     </div>
 
                     <div className="summary-row summary-row--total">
                         <span className="summary-row__label">Total:</span>
-                        <span className="summary-row__value">${calculateTotal().toFixed(2)}</span>
+                        <span className="summary-row__value">{calculateTotal().toFixed(2)} DH</span>
                     </div>
                 </div>
 

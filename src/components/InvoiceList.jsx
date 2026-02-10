@@ -104,7 +104,7 @@ function InvoiceList({ invoices, onDownloadPDF, onDelete, onStatusChange, loadin
                             </div>
 
                             <span className="invoice-item__amount">
-                                ${invoice.total.toFixed(2)}
+                                {invoice.total.toFixed(2)} DH
                             </span>
 
                             <div className="invoice-item__actions">

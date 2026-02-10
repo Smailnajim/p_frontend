@@ -216,7 +216,7 @@ function ProductsPage({ showToast, apiUrl }) {
                                             </td>
                                             <td>{product.category || '-'}</td>
                                             <td style={{ fontWeight: 600, color: 'var(--primary-600)' }}>
-                                                ${product.price.toFixed(2)}
+                                                {product.price.toFixed(2)} DH
                                             </td>
                                             <td>
                                                 <div className="data-table__actions">
@@ -295,7 +295,7 @@ function ProductsPage({ showToast, apiUrl }) {
 
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label className="form-label" htmlFor="price">Price ($) *</label>
+                                        <label className="form-label" htmlFor="price">Price (DH) *</label>
                                         <input
                                             type="number"
                                             id="price"
