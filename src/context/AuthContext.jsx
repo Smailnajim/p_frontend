@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
-    // Configure API URL based on environment or default to localhost:3000
+    // Configure API URL based on environment or default to 
     const API_URL = 'https://p-backend-v8ct.onrender.com/api';
 
     useEffect(() => {
