@@ -47,8 +47,8 @@ const DashboardPage = ({ apiUrl }) => {
     return (
         <div className="dashboard animate-fadeIn">
             <div className="dashboard__header">
-                <h1>Dashboard</h1>
-                <p>Welcome back, Admin</p>
+                <h1>Tableau de bord</h1>
+                <p>Bienvenue, Administrateur</p>
             </div>
 
             <div className="grid grid--2" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
@@ -60,7 +60,7 @@ const DashboardPage = ({ apiUrl }) => {
                     </div>
                     <div>
                         <div className="stat-card__value">{stats.totalRevenue.toFixed(2)} DH</div>
-                        <div className="stat-card__label">Total Revenue</div>
+                        <div className="stat-card__label">Revenu total</div>
                     </div>
                 </div>
 
@@ -72,7 +72,7 @@ const DashboardPage = ({ apiUrl }) => {
                     </div>
                     <div>
                         <div className="stat-card__value">{stats.totalInvoices}</div>
-                        <div className="stat-card__label">Total Invoices</div>
+                        <div className="stat-card__label">Total des factures</div>
                     </div>
                 </div>
 
@@ -84,7 +84,7 @@ const DashboardPage = ({ apiUrl }) => {
                     </div>
                     <div>
                         <div className="stat-card__value">{stats.pendingInvoices}</div>
-                        <div className="stat-card__label">Pending Payments</div>
+                        <div className="stat-card__label">Paiements en attente</div>
                     </div>
                 </div>
 
@@ -96,7 +96,7 @@ const DashboardPage = ({ apiUrl }) => {
                     </div>
                     <div>
                         <div className="stat-card__value">{stats.totalClients}</div>
-                        <div className="stat-card__label">Active Clients</div>
+                        <div className="stat-card__label">Clients actifs</div>
                     </div>
                 </div>
             </div>
@@ -104,10 +104,10 @@ const DashboardPage = ({ apiUrl }) => {
             {/* Chart Section Placeholder */}
             <div className="card" style={{ marginTop: '2rem' }}>
                 <div className="card__header">
-                    <h3 className="card__title">Revenue Overview</h3>
+                    <h3 className="card__title">Aperçu des revenus</h3>
                 </div>
                 <div className="card__body" style={{ height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--gray-400)' }}>
-                    Chart visualization would go here
+                    La visualisation graphique sera affichée ici
                 </div>
             </div>
         </div>

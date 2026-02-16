@@ -18,7 +18,7 @@ function RegisterPage() {
         const result = await register(name, email, password);
 
         if (!result.success) {
-            setError(result.message || 'Registration failed');
+            setError(result.message || "Échec de l'inscription");
         }
         setLoading(false);
     };
@@ -34,7 +34,7 @@ function RegisterPage() {
             <div className="card" style={{ width: '100%', maxWidth: '400px', padding: '2rem' }}>
                 <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
                     <h1 style={{ color: 'var(--primary-600)', marginBottom: '0.5rem' }}>InvoicePro</h1>
-                    <p style={{ color: 'var(--gray-500)' }}>Create your account</p>
+                    <p style={{ color: 'var(--gray-500)' }}>Créez votre compte</p>
                 </div>
 
                 {error && (
@@ -52,7 +52,7 @@ function RegisterPage() {
 
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label className="form-label">Full Name</label>
+                        <label className="form-label">Nom complet</label>
                         <input
                             type="text"
                             className="form-input"
@@ -62,7 +62,7 @@ function RegisterPage() {
                         />
                     </div>
                     <div className="form-group">
-                        <label className="form-label">Email</label>
+                        <label className="form-label">E-mail</label>
                         <input
                             type="email"
                             className="form-input"
@@ -72,7 +72,7 @@ function RegisterPage() {
                         />
                     </div>
                     <div className="form-group">
-                        <label className="form-label">Password</label>
+                        <label className="form-label">Mot de passe</label>
                         <input
                             type="password"
                             className="form-input"
@@ -88,14 +88,14 @@ function RegisterPage() {
                         style={{ width: '100%', marginTop: '1rem' }}
                         disabled={loading}
                     >
-                        {loading ? 'Creating Account...' : 'Sign Up'}
+                        {loading ? 'Création du compte...' : "S'inscrire"}
                     </button>
                 </form>
 
                 <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem' }}>
-                    <span style={{ color: 'var(--gray-500)' }}>Already have an account? </span>
+                    <span style={{ color: 'var(--gray-500)' }}>Vous avez déjà un compte ? </span>
                     <Link to="/login" style={{ color: 'var(--primary-600)', fontWeight: 600 }}>
-                        Sign in
+                        Se connecter
                     </Link>
                 </div>
             </div>

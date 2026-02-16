@@ -26,7 +26,7 @@ function ClientsPage({ showToast, apiUrl }) {
                 setClients(data.data);
             }
         } catch (error) {
-            showToast('Failed to fetch clients', 'error');
+            showToast('Échec de la récupération des clients', 'error');
         } finally {
             setLoading(false);
         }
@@ -77,7 +77,7 @@ function ClientsPage({ showToast, apiUrl }) {
         e.preventDefault();
 
         if (!formData.name.trim()) {
-            showToast('Client name is required', 'error');
+            showToast('Le nom du client est requis', 'error');
             return;
         }
 
@@ -99,21 +99,21 @@ function ClientsPage({ showToast, apiUrl }) {
             const data = await response.json();
 
             if (data.success) {
-                showToast(editingClient ? 'Client updated successfully!' : 'Client created successfully!');
+                showToast(editingClient ? 'Client mis à jour avec succès !' : 'Client créé avec succès !');
                 fetchClients();
                 closeModal();
             } else {
-                showToast(data.message || 'Failed to save client', 'error');
+                showToast(data.message || 'Échec de l\'enregistrement du client', 'error');
             }
         } catch (error) {
-            showToast('Failed to save client', 'error');
+            showToast('Échec de l\'enregistrement du client', 'error');
         } finally {
             setLoading(false);
         }
     };
 
     const handleDelete = async (id) => {
-        if (!window.confirm('Are you sure you want to delete this client?')) {
+        if (!window.confirm('Êtes-vous sûr de vouloir supprimer ce client ?')) {
             return;
         }
 
@@ -125,13 +125,13 @@ function ClientsPage({ showToast, apiUrl }) {
             const data = await response.json();
 
             if (data.success) {
-                showToast('Client deleted successfully!');
+                showToast('Client supprimé avec succès !');
                 setClients(clients.filter(c => c.id !== id));
             } else {
-                showToast(data.message || 'Failed to delete client', 'error');
+                showToast(data.message || 'Échec de la suppression du client', 'error');
             }
         } catch (error) {
-            showToast('Failed to delete client', 'error');
+            showToast('Échec de la suppression du client', 'error');
         }
     };
 
@@ -147,14 +147,14 @@ function ClientsPage({ showToast, apiUrl }) {
                     </div>
                     <div>
                         <h2>Clients</h2>
-                        <p>Manage your customers and their information</p>
+                        <p>Gérez vos clients et leurs informations</p>
                     </div>
                 </div>
                 <button className="btn btn--primary" onClick={() => openModal()}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                     </svg>
-                    Add Client
+                    Ajouter un client
                 </button>
             </div>
 
@@ -163,7 +163,7 @@ function ClientsPage({ showToast, apiUrl }) {
             {/* Clients Table */}
             <div className="card">
                 <div className="card__header">
-                    <h3 className="card__title">All Clients</h3>
+                    <h3 className="card__title">Tous les clients</h3>
                 </div>
                 <div className="card__body" style={{ padding: 0 }}>
                     {loading && clients.length === 0 ? (
@@ -177,18 +177,18 @@ function ClientsPage({ showToast, apiUrl }) {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
                             </div>
-                            <h3 className="empty-state__title">No Clients Yet</h3>
-                            <p className="empty-state__text">Add your first client to get started!</p>
+                            <h3 className="empty-state__title">Aucun client pour le moment</h3>
+                            <p className="empty-state__text">Ajoutez votre premier client pour commencer !</p>
                         </div>
                     ) : (
                         <div className="table-container">
                             <table className="data-table">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Company</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
+                                        <th>Nom</th>
+                                        <th>Entreprise</th>
+                                        <th>E-mail</th>
+                                        <th>Téléphone</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -206,7 +206,7 @@ function ClientsPage({ showToast, apiUrl }) {
                                                     <button
                                                         className="btn btn--secondary btn--sm"
                                                         onClick={() => openModal(client)}
-                                                        title="Edit"
+                                                        title="Modifier"
                                                     >
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -215,7 +215,7 @@ function ClientsPage({ showToast, apiUrl }) {
                                                     <button
                                                         className="btn btn--danger btn--sm"
                                                         onClick={() => handleDelete(client.id)}
-                                                        title="Delete"
+                                                        title="Supprimer"
                                                     >
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -238,7 +238,7 @@ function ClientsPage({ showToast, apiUrl }) {
                     <div className="modal" onClick={(e) => e.stopPropagation()}>
                         <div className="modal__header">
                             <h3 className="modal__title">
-                                {editingClient ? 'Edit Client' : 'Add New Client'}
+                                {editingClient ? 'Modifier le client' : 'Ajouter un nouveau client'}
                             </h3>
                             <button className="modal__close" onClick={closeModal}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -249,13 +249,13 @@ function ClientsPage({ showToast, apiUrl }) {
                         <form onSubmit={handleSubmit}>
                             <div className="modal__body">
                                 <div className="form-group">
-                                    <label className="form-label" htmlFor="name">Name *</label>
+                                    <label className="form-label" htmlFor="name">Nom *</label>
                                     <input
                                         type="text"
                                         id="name"
                                         name="name"
                                         className="form-input"
-                                        placeholder="Enter client name"
+                                        placeholder="Entrez le nom du client"
                                         value={formData.name}
                                         onChange={handleInputChange}
                                         required
@@ -263,13 +263,13 @@ function ClientsPage({ showToast, apiUrl }) {
                                 </div>
 
                                 <div className="form-group">
-                                    <label className="form-label" htmlFor="company">Company</label>
+                                    <label className="form-label" htmlFor="company">Entreprise</label>
                                     <input
                                         type="text"
                                         id="company"
                                         name="company"
                                         className="form-input"
-                                        placeholder="Enter company name"
+                                        placeholder="Entrez le nom de l'entreprise"
                                         value={formData.company}
                                         onChange={handleInputChange}
                                     />
@@ -277,7 +277,7 @@ function ClientsPage({ showToast, apiUrl }) {
 
                                 <div className="form-row">
                                     <div className="form-group">
-                                        <label className="form-label" htmlFor="email">Email</label>
+                                        <label className="form-label" htmlFor="email">E-mail</label>
                                         <input
                                             type="email"
                                             id="email"
@@ -290,7 +290,7 @@ function ClientsPage({ showToast, apiUrl }) {
                                     </div>
 
                                     <div className="form-group">
-                                        <label className="form-label" htmlFor="phone">Phone</label>
+                                        <label className="form-label" htmlFor="phone">Téléphone</label>
                                         <input
                                             type="tel"
                                             id="phone"
@@ -304,12 +304,12 @@ function ClientsPage({ showToast, apiUrl }) {
                                 </div>
 
                                 <div className="form-group">
-                                    <label className="form-label" htmlFor="address">Address</label>
+                                    <label className="form-label" htmlFor="address">Adresse</label>
                                     <textarea
                                         id="address"
                                         name="address"
                                         className="form-textarea"
-                                        placeholder="Enter full address"
+                                        placeholder="Entrez l'adresse complète"
                                         value={formData.address}
                                         onChange={handleInputChange}
                                         style={{ minHeight: '80px' }}
@@ -318,10 +318,10 @@ function ClientsPage({ showToast, apiUrl }) {
                             </div>
                             <div className="modal__footer">
                                 <button type="button" className="btn btn--secondary" onClick={closeModal}>
-                                    Cancel
+                                    Annuler
                                 </button>
                                 <button type="submit" className="btn btn--primary" disabled={loading}>
-                                    {loading ? 'Saving...' : (editingClient ? 'Update' : 'Create')}
+                                    {loading ? 'Enregistrement...' : (editingClient ? 'Mettre à jour' : 'Créer')}
                                 </button>
                             </div>
                         </form>

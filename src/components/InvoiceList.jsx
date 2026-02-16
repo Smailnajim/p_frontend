@@ -4,10 +4,10 @@ function InvoiceList({ invoices, onDownloadPDF, onDelete, onStatusChange, loadin
     const [changingStatus, setChangingStatus] = useState(null);
 
     const statusOptions = [
-        { value: 'pending', label: 'Pending', color: 'warning' },
-        { value: 'paid', label: 'Paid', color: 'success' },
-        { value: 'overdue', label: 'Overdue', color: 'danger' },
-        { value: 'cancelled', label: 'Cancelled', color: 'gray' },
+        { value: 'pending', label: 'En attente', color: 'warning' },
+        { value: 'paid', label: 'Payé', color: 'success' },
+        { value: 'overdue', label: 'En retard', color: 'danger' },
+        { value: 'cancelled', label: 'Annulé', color: 'gray' },
     ];
 
     const getStatusBadgeClass = (status) => {
@@ -44,8 +44,8 @@ function InvoiceList({ invoices, onDownloadPDF, onDelete, onStatusChange, loadin
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                     </div>
-                    <h3 className="empty-state__title">No Invoices Yet</h3>
-                    <p className="empty-state__text">Create your first invoice to get started!</p>
+                    <h3 className="empty-state__title">Aucune facture pour le moment</h3>
+                    <p className="empty-state__text">Créez votre première facture pour commencer !</p>
                 </div>
             </div>
         );
@@ -58,7 +58,7 @@ function InvoiceList({ invoices, onDownloadPDF, onDelete, onStatusChange, loadin
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--primary-500)' }}>
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                     </svg>
-                    Invoice List
+                    Liste des factures
                 </h3>
                 <span className="badge badge--pending">{invoices.length} Total</span>
             </div>
@@ -77,7 +77,7 @@ function InvoiceList({ invoices, onDownloadPDF, onDelete, onStatusChange, loadin
                                     <h4>{invoice.invoiceNumber}</h4>
                                     <p>{invoice.clientName}</p>
                                     <p style={{ fontSize: '0.75rem', color: 'var(--gray-400)' }}>
-                                        Created: {new Date(invoice.createdAt).toLocaleDateString()}
+                                        Créé le : {new Date(invoice.createdAt).toLocaleDateString()}
                                     </p>
                                 </div>
                             </div>
@@ -111,7 +111,7 @@ function InvoiceList({ invoices, onDownloadPDF, onDelete, onStatusChange, loadin
                                 <button
                                     className="btn btn--success btn--sm"
                                     onClick={() => onDownloadPDF(invoice.id)}
-                                    title="Download PDF"
+                                    title="Télécharger le PDF"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -122,7 +122,7 @@ function InvoiceList({ invoices, onDownloadPDF, onDelete, onStatusChange, loadin
                                 <button
                                     className="btn btn--danger btn--sm"
                                     onClick={() => onDelete(invoice.id)}
-                                    title="Delete Invoice"
+                                    title="Supprimer la facture"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />

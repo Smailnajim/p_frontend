@@ -17,7 +17,7 @@ function LoginPage() {
         const result = await login(email, password);
 
         if (!result.success) {
-            setError(result.message || 'Login failed');
+            setError(result.message || 'Échec de la connexion');
         }
         setLoading(false);
     };
@@ -33,7 +33,7 @@ function LoginPage() {
             <div className="card" style={{ width: '100%', maxWidth: '400px', padding: '2rem' }}>
                 <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
                     <h1 style={{ color: 'var(--primary-600)', marginBottom: '0.5rem' }}>InvoicePro</h1>
-                    <p style={{ color: 'var(--gray-500)' }}>Sign in to your account</p>
+                    <p style={{ color: 'var(--gray-500)' }}>Connectez-vous à votre compte</p>
                 </div>
 
                 {error && (
@@ -48,7 +48,7 @@ function LoginPage() {
                     }}>
                         {error.includes('blocked') ? (
                             <>
-                                <strong>Authorization Pending:</strong><br />
+                                <strong>Autorisation en attente :</strong><br />
                                 {error}
                             </>
                         ) : error}
@@ -57,7 +57,7 @@ function LoginPage() {
 
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label className="form-label">Email</label>
+                        <label className="form-label">E-mail</label>
                         <input
                             type="email"
                             className="form-input"
@@ -67,7 +67,7 @@ function LoginPage() {
                         />
                     </div>
                     <div className="form-group">
-                        <label className="form-label">Password</label>
+                        <label className="form-label">Mot de passe</label>
                         <input
                             type="password"
                             className="form-input"
@@ -82,14 +82,14 @@ function LoginPage() {
                         style={{ width: '100%', marginTop: '1rem' }}
                         disabled={loading}
                     >
-                        {loading ? 'Signing In...' : 'Sign In'}
+                        {loading ? 'Connexion en cours...' : 'Se connecter'}
                     </button>
                 </form>
 
                 <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem' }}>
-                    <span style={{ color: 'var(--gray-500)' }}>Don't have an account? </span>
+                    <span style={{ color: 'var(--gray-500)' }}>Vous n'avez pas de compte ? </span>
                     <Link to="/register" style={{ color: 'var(--primary-600)', fontWeight: 600 }}>
-                        Sign up
+                        S'inscrire
                     </Link>
                 </div>
             </div>

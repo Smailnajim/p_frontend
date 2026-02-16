@@ -12,7 +12,7 @@ import RegisterPage from './pages/RegisterPage';
 import Toast from './components/Toast';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
-const API_URL = 'https://p-backend-v8ct.onrender.com/api';
+const API_URL = 'http://localhost:3000/api';
 
 const ProtectedRoute = () => {
   const { user, loading } = useAuth();

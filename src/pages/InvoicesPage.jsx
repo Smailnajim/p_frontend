@@ -22,7 +22,7 @@ function InvoicesPage({ showToast, apiUrl }) {
                 setInvoices(data.data);
             }
         } catch (error) {
-            showToast('Failed to fetch invoices', 'error');
+            showToast('Échec de la récupération des factures', 'error');
         } finally {
             setLoading(false);
         }
@@ -79,15 +79,15 @@ function InvoicesPage({ showToast, apiUrl }) {
 
             if (data.success) {
                 setInvoices([...invoices, data.data]);
-                showToast('Invoice created successfully!');
+                showToast('Facture créée avec succès !');
                 setActiveTab('list');
                 return true;
             } else {
-                showToast(data.message || 'Failed to create invoice', 'error');
+                showToast(data.message || 'Échec de la création de la facture', 'error');
                 return false;
             }
         } catch (error) {
-            showToast('Failed to create invoice', 'error');
+            showToast('Échec de la création de la facture', 'error');
             return false;
         } finally {
             setLoading(false);
@@ -101,7 +101,7 @@ function InvoicesPage({ showToast, apiUrl }) {
             });
 
             if (!response.ok) {
-                throw new Error('Failed to generate PDF');
+                throw new Error('Échec de la génération du PDF');
             }
 
             const blob = await response.blob();
@@ -113,14 +113,14 @@ function InvoicesPage({ showToast, apiUrl }) {
             a.click();
             window.URL.revokeObjectURL(url);
             document.body.removeChild(a);
-            showToast('PDF downloaded successfully!');
+            showToast('PDF téléchargé avec succès !');
         } catch (error) {
-            showToast('Failed to download PDF', 'error');
+            showToast('Échec du téléchargement du PDF', 'error');
         }
     };
 
     const handleDeleteInvoice = async (id) => {
-        if (!window.confirm('Are you sure you want to delete this invoice?')) {
+        if (!window.confirm('Êtes-vous sûr de vouloir supprimer cette facture ?')) {
             return;
         }
 
@@ -133,12 +133,12 @@ function InvoicesPage({ showToast, apiUrl }) {
 
             if (data.success) {
                 setInvoices(invoices.filter(inv => inv.id !== id));
-                showToast('Invoice deleted successfully!');
+                showToast('Facture supprimée avec succès !');
             } else {
-                showToast(data.message || 'Failed to delete invoice', 'error');
+                showToast(data.message || 'Échec de la suppression de la facture', 'error');
             }
         } catch (error) {
-            showToast('Failed to delete invoice', 'error');
+            showToast('Échec de la suppression de la facture', 'error');
         }
     };
 
@@ -158,12 +158,12 @@ function InvoicesPage({ showToast, apiUrl }) {
                 setInvoices(invoices.map(inv =>
                     inv.id === id ? { ...inv, status: newStatus } : inv
                 ));
-                showToast(`Invoice status updated to ${newStatus}!`);
+                showToast(`Statut de la facture mis à jour : ${newStatus} !`);
             } else {
-                showToast(data.message || 'Failed to update status', 'error');
+                showToast(data.message || 'Échec de la mise à jour du statut', 'error');
             }
         } catch (error) {
-            showToast('Failed to update status', 'error');
+            showToast('Échec de la mise à jour du statut', 'error');
         }
     };
 
@@ -181,8 +181,8 @@ function InvoicesPage({ showToast, apiUrl }) {
                         </svg>
                     </div>
                     <div>
-                        <h2>Invoices</h2>
-                        <p>Manage your invoices and payments</p>
+                        <h2>Factures</h2>
+                        <p>Gérez vos factures et paiements</p>
                     </div>
                 </div>
                 <button
@@ -192,7 +192,7 @@ function InvoicesPage({ showToast, apiUrl }) {
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                     </svg>
-                    Create New Invoice
+                    Créer une nouvelle facture
                 </button>
             </div>
 
@@ -208,12 +208,12 @@ function InvoicesPage({ showToast, apiUrl }) {
             ) : (
                 <div className="card animate-fadeIn">
                     <div className="card__header">
-                        <h3 className="card__title">Create New Invoice</h3>
+                        <h3 className="card__title">Créer une nouvelle facture</h3>
                         <button
                             className="btn btn--ghost btn--sm"
                             onClick={() => setActiveTab('list')}
                         >
-                            Cancel
+                            Annuler
                         </button>
                     </div>
                     <div className="card__body">

@@ -16,10 +16,10 @@ function UsersPage({ showToast, apiUrl }) {
             if (data.success) {
                 setUsers(data.data);
             } else {
-                showToast(data.message || 'Failed to fetch users', 'error');
+                showToast(data.message || 'Échec de la récupération des utilisateurs', 'error');
             }
         } catch (error) {
-            showToast('Failed to fetch users', 'error');
+            showToast('Échec de la récupération des utilisateurs', 'error');
         } finally {
             setLoading(false);
         }
@@ -43,12 +43,12 @@ function UsersPage({ showToast, apiUrl }) {
 
             if (data.success) {
                 setUsers(users.map(u => u._id === id ? { ...u, status: newStatus } : u));
-                showToast(`User ${newStatus === 'allowed' ? 'approved' : 'blocked'} successfully!`);
+                showToast(`Utilisateur ${newStatus === 'allowed' ? 'approuvé' : 'bloqué'} avec succès !`);
             } else {
-                showToast(data.message || 'Failed to update user status', 'error');
+                showToast(data.message || 'Échec de la mise à jour du statut', 'error');
             }
         } catch (error) {
-            showToast('Failed to update user status', 'error');
+            showToast('Échec de la mise à jour du statut', 'error');
         }
     };
 
@@ -63,8 +63,8 @@ function UsersPage({ showToast, apiUrl }) {
                         </svg>
                     </div>
                     <div>
-                        <h2>User Management</h2>
-                        <p>Manage user access and approvals</p>
+                        <h2>Gestion des utilisateurs</h2>
+                        <p>Gérez les accès et les approbations des utilisateurs</p>
                     </div>
                 </div>
             </div>
@@ -72,7 +72,7 @@ function UsersPage({ showToast, apiUrl }) {
             {/* Users Table */}
             <div className="card">
                 <div className="card__header">
-                    <h3 className="card__title">Registered Users</h3>
+                    <h3 className="card__title">Utilisateurs enregistrés</h3>
                 </div>
                 <div className="card__body" style={{ padding: 0 }}>
                     {loading && users.length === 0 ? (
@@ -81,16 +81,16 @@ function UsersPage({ showToast, apiUrl }) {
                         </div>
                     ) : users.length === 0 ? (
                         <div className="empty-state">
-                            <p className="empty-state__text">No users found.</p>
+                            <p className="empty-state__text">Aucun utilisateur trouvé.</p>
                         </div>
                     ) : (
                         <div className="table-container">
                             <table className="data-table">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Status</th>
+                                        <th>Nom</th>
+                                        <th>E-mail</th>
+                                        <th>Statut</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -99,7 +99,7 @@ function UsersPage({ showToast, apiUrl }) {
                                         <tr key={u._id}>
                                             <td>
                                                 <strong>{u.name}</strong>
-                                                {u._id === user?.id && <span className="badge badge--success" style={{ marginLeft: '8px' }}>You</span>}
+                                                {u._id === user?.id && <span className="badge badge--success" style={{ marginLeft: '8px' }}>Vous</span>}
                                             </td>
                                             <td>{u.email}</td>
                                             <td>
@@ -115,14 +115,14 @@ function UsersPage({ showToast, apiUrl }) {
                                                                 className="btn btn--primary btn--sm"
                                                                 onClick={() => handleUpdateStatus(u._id, 'allowed')}
                                                             >
-                                                                Approve
+                                                                Approuver
                                                             </button>
                                                         ) : (
                                                             <button
                                                                 className="btn btn--danger btn--sm"
                                                                 onClick={() => handleUpdateStatus(u._id, 'blocked')}
                                                             >
-                                                                Block
+                                                                Bloquer
                                                             </button>
                                                         )}
                                                     </div>

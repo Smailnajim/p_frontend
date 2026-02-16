@@ -97,12 +97,12 @@ function InvoiceForm({ onSubmit, loading, clients = [], products = [] }) {
         e.preventDefault();
 
         if (!formData.clientName.trim()) {
-            alert('Client name is required');
+            alert('Le nom du client est requis');
             return;
         }
 
         if (formData.items.some(item => !item.description.trim())) {
-            alert('All items must have a description');
+            alert('Tous les articles doivent avoir une description');
             return;
         }
 
@@ -129,24 +129,24 @@ function InvoiceForm({ onSubmit, loading, clients = [], products = [] }) {
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: 'var(--primary-500)' }}>
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                     </svg>
-                    Create New Invoice
+                    Créer une nouvelle facture
                 </h3>
             </div>
 
             <form className="card__body" onSubmit={handleSubmit}>
                 {/* Client Selection */}
-                <h4 style={{ marginBottom: '1rem', color: 'var(--gray-700)' }}>Client Information</h4>
+                <h4 style={{ marginBottom: '1rem', color: 'var(--gray-700)' }}>Informations du client</h4>
 
                 {clients.length > 0 && (
                     <div className="form-group">
-                        <label className="form-label" htmlFor="clientSelect">Select Existing Client</label>
+                        <label className="form-label" htmlFor="clientSelect">Sélectionner un client existant</label>
                         <select
                             id="clientSelect"
                             className="form-input"
                             value={selectedClientId}
                             onChange={handleClientSelect}
                         >
-                            <option value="">-- Select a client or enter manually --</option>
+                            <option value="">-- Sélectionnez un client ou saisissez manuellement --</option>
                             {clients.map(client => (
                                 <option key={client.id} value={client.id}>
                                     {client.name} {client.company ? `(${client.company})` : ''}
@@ -158,13 +158,13 @@ function InvoiceForm({ onSubmit, loading, clients = [], products = [] }) {
 
                 <div className="form-row">
                     <div className="form-group">
-                        <label className="form-label" htmlFor="clientName">Client Name *</label>
+                        <label className="form-label" htmlFor="clientName">Nom du client *</label>
                         <input
                             type="text"
                             id="clientName"
                             name="clientName"
                             className="form-input"
-                            placeholder="Enter client name"
+                            placeholder="Entrez le nom du client"
                             value={formData.clientName}
                             onChange={handleInputChange}
                             required
@@ -172,13 +172,13 @@ function InvoiceForm({ onSubmit, loading, clients = [], products = [] }) {
                     </div>
 
                     <div className="form-group">
-                        <label className="form-label" htmlFor="clientEmail">Email</label>
+                        <label className="form-label" htmlFor="clientEmail">E-mail</label>
                         <input
                             type="email"
                             id="clientEmail"
                             name="clientEmail"
                             className="form-input"
-                            placeholder="client@example.com"
+                            placeholder="client@exemple.com"
                             value={formData.clientEmail}
                             onChange={handleInputChange}
                         />
@@ -187,20 +187,20 @@ function InvoiceForm({ onSubmit, loading, clients = [], products = [] }) {
 
                 <div className="form-row">
                     <div className="form-group">
-                        <label className="form-label" htmlFor="clientAddress">Address</label>
+                        <label className="form-label" htmlFor="clientAddress">Adresse</label>
                         <input
                             type="text"
                             id="clientAddress"
                             name="clientAddress"
                             className="form-input"
-                            placeholder="Enter client address"
+                            placeholder="Entrez l'adresse du client"
                             value={formData.clientAddress}
                             onChange={handleInputChange}
                         />
                     </div>
 
                     <div className="form-group">
-                        <label className="form-label" htmlFor="dueDate">Due Date</label>
+                        <label className="form-label" htmlFor="dueDate">Date d'échéance</label>
                         <input
                             type="date"
                             id="dueDate"
@@ -214,16 +214,16 @@ function InvoiceForm({ onSubmit, loading, clients = [], products = [] }) {
 
                 {/* Invoice Items */}
                 <h4 style={{ marginTop: '1.5rem', marginBottom: '1rem', color: 'var(--gray-700)' }}>
-                    Invoice Items
+                    Articles de la facture
                 </h4>
 
                 <table className="items-table">
                     <thead>
                         <tr>
                             <th style={{ width: '35%' }}>Description</th>
-                            {products.length > 0 && <th style={{ width: '20%' }}>Quick Add</th>}
-                            <th style={{ width: '12%' }}>Qty</th>
-                            <th style={{ width: '15%' }}>Unit Price (DH)</th>
+                            {products.length > 0 && <th style={{ width: '20%' }}>Ajout rapide</th>}
+                            <th style={{ width: '12%' }}>Qté</th>
+                            <th style={{ width: '15%' }}>Prix unitaire (DH)</th>
                             <th style={{ width: '12%' }}>Total</th>
                             <th style={{ width: '6%' }}></th>
                         </tr>
@@ -235,7 +235,7 @@ function InvoiceForm({ onSubmit, loading, clients = [], products = [] }) {
                                     <input
                                         type="text"
                                         className="form-input"
-                                        placeholder="Item description"
+                                        placeholder="Description de l'article"
                                         value={item.description}
                                         onChange={(e) => handleItemChange(index, 'description', e.target.value)}
                                         required
@@ -248,7 +248,7 @@ function InvoiceForm({ onSubmit, loading, clients = [], products = [] }) {
                                             onChange={(e) => handleProductSelect(index, e.target.value)}
                                             defaultValue=""
                                         >
-                                            <option value="">Select...</option>
+                                            <option value="">Sélectionner...</option>
                                             {products.map(product => (
                                                 <option key={product.id} value={product.id}>
                                                     {product.name} ({product.price} DH)
@@ -309,18 +309,18 @@ function InvoiceForm({ onSubmit, loading, clients = [], products = [] }) {
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                     </svg>
-                    Add Item
+                    Ajouter un article
                 </button>
 
                 {/* Tax and Summary */}
                 <div className="invoice-summary">
                     <div className="summary-row">
-                        <span className="summary-row__label">Subtotal:</span>
+                        <span className="summary-row__label">Sous-total :</span>
                         <span className="summary-row__value">{calculateSubtotal().toFixed(2)} DH</span>
                     </div>
 
                     <div className="summary-row" style={{ alignItems: 'center' }}>
-                        <span className="summary-row__label">Tax Rate (%):</span>
+                        <span className="summary-row__label">Taux de TVA (%) :</span>
                         <input
                             type="number"
                             name="taxRate"
@@ -334,12 +334,12 @@ function InvoiceForm({ onSubmit, loading, clients = [], products = [] }) {
                     </div>
 
                     <div className="summary-row">
-                        <span className="summary-row__label">Tax Amount:</span>
+                        <span className="summary-row__label">Montant de la TVA :</span>
                         <span className="summary-row__value">{calculateTax().toFixed(2)} DH</span>
                     </div>
 
                     <div className="summary-row summary-row--total">
-                        <span className="summary-row__label">Total:</span>
+                        <span className="summary-row__label">Total :</span>
                         <span className="summary-row__value">{calculateTotal().toFixed(2)} DH</span>
                     </div>
                 </div>
@@ -351,7 +351,7 @@ function InvoiceForm({ onSubmit, loading, clients = [], products = [] }) {
                         id="notes"
                         name="notes"
                         className="form-textarea"
-                        placeholder="Add any additional notes..."
+                        placeholder="Ajoutez des notes supplémentaires..."
                         value={formData.notes}
                         onChange={handleInputChange}
                     />
@@ -367,14 +367,14 @@ function InvoiceForm({ onSubmit, loading, clients = [], products = [] }) {
                     {loading ? (
                         <>
                             <span className="spinner"></span>
-                            Creating...
+                            Création...
                         </>
                     ) : (
                         <>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            Create Invoice
+                            Créer la facture
                         </>
                     )}
                 </button>
