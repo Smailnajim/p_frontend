@@ -6,13 +6,14 @@ import DashboardPage from './pages/DashboardPage';
 import InvoicesPage from './pages/InvoicesPage';
 import ClientsPage from './pages/ClientsPage';
 import ProductsPage from './pages/ProductsPage';
+import DevisPage from './pages/DevisPage';
 import UsersPage from './pages/UsersPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import Toast from './components/Toast';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
-const API_URL = 'https://p-backend-v8ct.onrender.com/api';
+const API_URL = 'http://localhost:3000/api';
 
 const ProtectedRoute = () => {
   const { user, loading } = useAuth();
@@ -44,6 +45,7 @@ function AppContent() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Navigate to="/dashboard" replace />} />
             <Route path="dashboard" element={<DashboardPage apiUrl={API_URL} />} />
+            <Route path="devis" element={<DevisPage showToast={showToast} apiUrl={API_URL} />} />
             <Route path="invoices" element={<InvoicesPage showToast={showToast} apiUrl={API_URL} />} />
             <Route path="clients" element={<ClientsPage showToast={showToast} apiUrl={API_URL} />} />
             <Route path="products" element={<ProductsPage showToast={showToast} apiUrl={API_URL} />} />
