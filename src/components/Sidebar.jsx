@@ -49,7 +49,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                 </div>
-                <span className="sidebar__title">InvoicePro</span>
+                <span className="sidebar__title">TOUHAMI DECOR</span>
             </div>
 
             <nav className="sidebar__nav">

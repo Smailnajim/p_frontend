@@ -78,7 +78,7 @@ function InvoicesPage({ showToast, apiUrl }) {
             const data = await response.json();
 
             if (data.success) {
-                setInvoices([...invoices, data.data]);
+                setInvoices([data.data, ...invoices]);
                 showToast('Facture créée avec succès !');
                 setActiveTab('list');
                 return true;

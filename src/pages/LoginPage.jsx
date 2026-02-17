@@ -32,7 +32,7 @@ function LoginPage() {
         }}>
             <div className="card" style={{ width: '100%', maxWidth: '400px', padding: '2rem' }}>
                 <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                    <h1 style={{ color: 'var(--primary-600)', marginBottom: '0.5rem' }}>InvoicePro</h1>
+                    <h1 style={{ color: 'var(--primary-600)', marginBottom: '0.5rem' }}>TOUHAMI DECOR</h1>
                     <p style={{ color: 'var(--gray-500)' }}>Connectez-vous à votre compte</p>
                 </div>
 

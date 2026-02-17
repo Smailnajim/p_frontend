@@ -56,7 +56,7 @@
 }
 
 .sidebar__title {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 800;
   color: var(--gray-900);
   letter-spacing: -0.5px;
@@ -298,7 +298,7 @@
 }
 
 .stat-card__icon--purple {
-  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #d4af37 0%, #b08d26 100%);
 }
 
 .stat-card__icon--orange {
@@ -450,7 +450,7 @@
 
 .type-badge--service {
   background: rgba(139, 92, 246, 0.1);
-  color: #7c3aed;
+  color: #b08d26;
 }
 
 /* Responsive */
